@@ -26,11 +26,14 @@ public class ProductsController : BaseApiController
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<Product>>> GetProducts()
+    public async Task<ActionResult<Pagination<ProductDto>>> GetProducts([FromQuery] ProductSpecParams productParams)
     {
-        var productSpec = new ProductsWithTypesAndBrandsSpecification();
+        var productSpec = new ProductsWithTypesAndBrandsSpecification(productParams);
         var products = await _productsRepo.ListAsync(productSpec);
-        return Ok(_mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDto>>(products));
+        var countSpect = new ProductWithFilterForCountSpecification(productParams);
+        var totalItems = await _productsRepo.CountAsync(countSpect);
+        var data = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDto>>(products);
+        return Ok(new Pagination<ProductDto>(productParams.PageSize, productParams.PageIndex, totalItems, data));
     }
 
     [HttpGet("{id}")]
