@@ -1,0 +1,14 @@
+<pagination
+  *ngIf="totalItems && pageSize"
+  class="d-flex mx-auto mt-3"
+  [boundaryLinks]="true"
+  [totalItems]="totalItems"
+  [itemsPerPage]="pageSize"
+  [maxSize]="10"
+  (pageChanged)="onPagerChanged($event)"
+  previousText="&lsaquo;"
+  nextText="&rsaquo;"
+  firstText="&laquo;"
+  lastText="&raquo;"
+>
+</pagination>

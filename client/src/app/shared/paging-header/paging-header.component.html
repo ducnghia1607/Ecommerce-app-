@@ -1,0 +1,13 @@
+<header *ngIf="totalItems && pageIndex && pageSize">
+  Showing
+  <strong
+    >{{ (pageIndex - 1) * pageSize + 1 }}
+    -
+    {{ pageSize * pageIndex > totalItems ? totalItems : pageSize * pageIndex }}
+  </strong>
+  of
+  <strong>
+    {{ totalItems }}
+  </strong>
+  Results
+</header>
