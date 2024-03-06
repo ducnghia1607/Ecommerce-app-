@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="d-flex">
+    <button class="btn btn-outline-secondary me-3" (click)="get400Error()">
+      Test 400 Error
+    </button>
+    <button
+      class="btn btn-outline-secondary me-3"
+      (click)="getValidation400Error()"
+    >
+      Test Validation Error
+    </button>
+    <button class="btn btn-outline-secondary me-3" (click)="get404Error()">
+      Test 404 Error
+    </button>
+    <button class="btn btn-outline-secondary me-3" (click)="getServerError()">
+      Test Server Error
+    </button>
+  </div>
+</div>
+
+<ul>
+  <li *ngFor="let s of errors">{{ s }}</li>
+</ul>

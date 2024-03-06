@@ -1,0 +1,14 @@
+<div class="container" *ngIf="error">
+  <h3>
+    Internal server error -refreshing this page will make the errors disappear
+  </h3>
+  <h4 class="text-danger">Error:{{ error.message }}</h4>
+  <p>This error comes from the server - not Angular</p>
+  <p>What to do next ?</p>
+  <ul>
+    <li>Check the network</li>
+    <li>Reproduce the request</li>
+  </ul>
+  <strong>Stack trace</strong>
+  <p class="text-danger bg-white">{{ error.details }}</p>
+</div>
