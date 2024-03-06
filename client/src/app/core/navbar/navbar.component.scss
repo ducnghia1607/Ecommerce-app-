@@ -9,3 +9,16 @@
     min-height: 25px;
     min-width: 25px;
 }
+
+a {
+    color:#343a34;
+    text-decoration: none;
+    &.active{
+        color: orange;
+    }
+
+}
+
+.logo{
+    cursor: pointer;
+}
