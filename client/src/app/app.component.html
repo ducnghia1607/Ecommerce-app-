@@ -1,5 +1,14 @@
-<app-navbar> </app-navbar>
+<ngx-spinner
+  bdColor="rgba(255,255,255,0.6)"
+  size="medium"
+  color="#333333"
+  type="timer"
+  [fullScreen]="true"
+  ><p style="color: #333333">Loading...</p></ngx-spinner
+>
 
+<app-navbar> </app-navbar>
+<app-section-header></app-section-header>
 <div class="container" style="margin-top: 140px">
   <router-outlet></router-outlet>
 </div>
