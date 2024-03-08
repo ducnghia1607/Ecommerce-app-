@@ -9,6 +9,7 @@ import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
 import { ErrorInterceptor } from './core/interceptor/error.interceptor';
 import { LoadingInterceptor } from './core/interceptor/loading.interceptor';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { LoadingInterceptor } from './core/interceptor/loading.interceptor';
     HttpClientModule,
     CoreModule,
     HomeModule,
+    CarouselModule.forRoot(),
   ],
   providers: [
     {

@@ -6,16 +6,30 @@
   <div class="col-6 mt-5">
     <h3 class="mb-3">{{ product.name }}</h3>
     <h5 class="mb-3">{{ product.price | currency }}</h5>
+    <h5 class="fst-italic text-primary" *ngIf="quantityInBasket != 0">
+      You have {{ quantityInBasket }} of this product in your basket
+    </h5>
     <div class="d-flex align-items-center justify-content-start mb-3">
-      <i class="fa fa-plus-circle text-warning me-2" style="font-size: 2em"></i>
-
-      <span style="font-size: 1.5em">2</span>
       <i
-        class="fa fa-minus-circle text-warning mx-2"
-        style="font-size: 2em"
+        class="fa fa-minus-circle text-warning me-2"
+        style="font-size: 2em; cursor: pointer"
+        (click)="decrementQuantity()"
       ></i>
-      <button type="button" class="btn btn-outline-secondary ms-2">
-        Add to cart
+      <span style="font-size: 1.5em">{{ quantity }}</span>
+
+      <i
+        class="fa fa-plus-circle text-warning mx-2"
+        style="font-size: 2em; cursor: pointer"
+        (click)="incrementQuantity()"
+      ></i>
+
+      <button
+        type="button"
+        class="btn btn-primary ms-2"
+        (click)="updateBasket(product)"
+        [disabled]="quantity == quantityInBasket"
+      >
+        {{ buttonText }}
       </button>
     </div>
     <h5 class="mb-3">Description</h5>

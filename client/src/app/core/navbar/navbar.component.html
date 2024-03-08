@@ -21,9 +21,14 @@
     >
   </nav>
   <div class="d-flex flex-row align-items-center">
-    <a class="position-relative me-5">
+    <a class="position-relative me-5" routerLink="/basket">
       <i class="fa fa-shopping-cart fa-2x text-dark"></i>
-      <div class="cart-no">5</div>
+      <div
+        class="cart-no"
+        *ngIf="basketService.basketSource$ | async as basket"
+      >
+        {{ getItemsCount(basket.items) }}
+      </div>
     </a>
 
     <a href="" class="btn btn-outline-secondary me-3">Login</a>
