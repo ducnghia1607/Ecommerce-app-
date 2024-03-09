@@ -1,5 +1,6 @@
 
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -11,6 +12,13 @@ namespace API.Controllers
         {
             this._context = context;
 
+        }
+
+        [HttpGet("testauth")]
+        [Authorize]
+        public ActionResult<string> GetTestAuth()
+        {
+            return "auth test";
         }
 
         [HttpGet("notfound")]
