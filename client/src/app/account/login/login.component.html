@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-center">
+  <div class="col-3">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <h1 class="text-center mb-2">Login</h1>
+
+      <app-text-input
+        [formControl]="$any(loginForm).get('email')"
+        [type]="'email'"
+        [label]="'Email Address'"
+      ></app-text-input>
+      <app-text-input
+        [formControl]="$any(loginForm).controls['password']"
+        [type]="'password'"
+        [label]="'Password'"
+      ></app-text-input>
+
+      <div class="d-grid">
+        <button class="btn btn-lg btn-primary" type="submit">Login</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="d-flex justify-content-center">
+  <div class="col-3">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <h1 class="text-center mb-2">Sign up</h1>
+
+      <app-text-input
+        [formControl]="$any(registerForm).get('displayName')"
+        [type]="'text'"
+        [label]="'Display Name'"
+      ></app-text-input>
+      <app-text-input
+        [formControl]="$any(registerForm).get('email')"
+        [type]="'email'"
+        [label]="'Email Address'"
+      ></app-text-input>
+      <app-text-input
+        [formControl]="$any(registerForm).controls['password']"
+        [type]="'password'"
+        [label]="'Password'"
+      ></app-text-input>
+
+      <div class="d-grid">
+        <button
+          class="btn btn-lg btn-primary"
+          type="submit"
+          [disabled]="!registerForm.valid"
+        >
+          Sign up
+        </button>
+      </div>
+      <ng-container *ngIf="errors">
+        <p *ngFor="let error of errors">{{ error }}</p>
+      </ng-container>
+    </form>
+  </div>
+</div>
