@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using API.Controllers;
+using API.Errors;
 using API.Extensions;
 using AutoMapper;
 using Core;
@@ -99,6 +100,26 @@ public class AccountController : BaseApiController
     [HttpPost("register")]
     public async Task<ActionResult<UserDto>> register(RegisterDto registerDto)
     {
+        // if (await CheckEmailExists(registerDto.Email))
+        // {
+        //     return new BadRequestObjectResult(new ApiValidationErrorResponse
+        //     {
+        //         Errors = new[]{
+        //             "The email is in use"
+        //         }
+        //     }); ;
+        // }
+
+        if (CheckEmailExists(registerDto.Email).Result)
+        {
+            return new BadRequestObjectResult(new ApiValidationErrorResponse
+            {
+                Errors = new[]{
+                    "The email is in use"
+                }
+            }); ;
+        }
+
         var user = new AppUser
         {
             Email = registerDto.Email,
