@@ -45,4 +45,22 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     }
 
 
+
+
+    public void Add(T entity)
+    {
+        _context.Set<T>().Add(entity);
+    }
+
+    public void Update(T entity)
+    {
+        _context.Set<T>().Attach(entity);
+        // Khi update thì phải sửa lại state của nó thành modified ; 
+        _context.Entry<T>(entity).State = EntityState.Modified;
+    }
+
+    public void Delete(T entity)
+    {
+        _context.Set<T>().Remove(entity);
+    }
 }

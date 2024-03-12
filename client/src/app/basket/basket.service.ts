@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { environment } from 'src/environments/environment.development';
+
 import { Basket, BasketItem, BasketTotalCost } from '../shared/models/basket';
 import { Product } from '../shared/models/Product';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
