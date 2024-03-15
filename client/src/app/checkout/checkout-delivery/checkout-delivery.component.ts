@@ -1,0 +1,30 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { CheckoutService } from '../checkout.service';
+import { DeliveryMethod } from 'src/app/shared/models/delivery';
+import { FormGroup } from '@angular/forms';
+import { BasketService } from 'src/app/basket/basket.service';
+
+@Component({
+  selector: 'app-checkout-delivery',
+  templateUrl: './checkout-delivery.component.html',
+  styleUrls: ['./checkout-delivery.component.scss'],
+})
+export class CheckoutDeliveryComponent implements OnInit {
+  @Input() checkoutForm?: FormGroup;
+  deliveryMethods: DeliveryMethod[] = [];
+  constructor(
+    public checkoutService: CheckoutService,
+    public basketService: BasketService
+  ) {}
+  ngOnInit(): void {
+    this.getMethods();
+  }
+
+  getMethods() {
+    this.checkoutService.getDeliveryMethods().subscribe({
+      next: (methods: DeliveryMethod[]) => {
+        this.deliveryMethods = methods;
+      },
+    });
+  }
+}

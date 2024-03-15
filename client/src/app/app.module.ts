@@ -10,6 +10,7 @@ import { HomeModule } from './home/home.module';
 import { ErrorInterceptor } from './core/interceptor/error.interceptor';
 import { LoadingInterceptor } from './core/interceptor/loading.interceptor';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +32,11 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
       multi: true,
     },
   ],
