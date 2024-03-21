@@ -19,6 +19,10 @@ export class Basket implements Basket {
   // id = 'aaaddafaffffe12';
   id = createId();
   items: BasketItem[] = [];
+  deliveryMethodId?: number;
+  clientSecret?: string;
+  paymentIntentId?: string;
+  shippingPrice = 0;
 }
 
 export interface BasketTotalCost {

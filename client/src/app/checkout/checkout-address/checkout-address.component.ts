@@ -15,16 +15,7 @@ export class CheckoutAddressComponent implements OnInit {
     private accountService: AccountService,
     private toastService: ToastrService
   ) {}
-  ngOnInit(): void {
-    this.getUserAddress();
-  }
-  getUserAddress() {
-    this.accountService.getUserAddress().subscribe({
-      next: (address: Address) => {
-        this.checkoutForm?.get('addressForm')?.patchValue(address);
-      },
-    });
-  }
+  ngOnInit(): void {}
 
   saveUserAddress() {
     this.accountService

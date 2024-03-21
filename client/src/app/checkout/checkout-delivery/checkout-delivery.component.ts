@@ -27,4 +27,12 @@ export class CheckoutDeliveryComponent implements OnInit {
       },
     });
   }
+
+  loadCurrentChoiceDelivery() {
+    var basket = this.basketService.getCurrentBasketValue();
+    this.checkoutForm
+      ?.get('deliveryForm')
+      ?.get('deliveryMethod')
+      ?.patchValue(basket);
+  }
 }

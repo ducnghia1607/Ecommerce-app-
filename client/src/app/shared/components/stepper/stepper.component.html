@@ -5,8 +5,9 @@
         class="nav-link text-uppercase fw-bold py-3"
         (click)="selectStepByIndex(i)"
         [class.active]="selectedIndex === i"
+        [disabled]="true"
       >
-        {{ step.label }} : {{ step.completed }}
+        {{ step.label }}
       </button>
     </li>
   </ul>

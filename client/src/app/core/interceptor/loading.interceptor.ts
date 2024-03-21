@@ -17,10 +17,13 @@ export class LoadingInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     // Khi check email thì không hiện spinner
-    if (!request.url.includes('emailExists')) {
-      this.busyService.busy();
+    if (
+      request.url.includes('emailExists') ||
+      (request.method === 'POST' && request.url.includes('orders'))
+    ) {
+      return next.handle(request);
     }
-
+    this.busyService.busy();
     return next.handle(request).pipe(
       delay(1000),
       finalize(() => {

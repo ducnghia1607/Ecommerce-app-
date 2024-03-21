@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from '../account/account.service';
 import { Address } from '../shared/models/User';
 import { ToastrService } from 'ngx-toastr';
+import { BasketService } from '../basket/basket.service';
 
 @Component({
   selector: 'app-checkout',
@@ -10,7 +11,14 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./checkout.component.scss'],
 })
 export class CheckoutComponent {
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private accountService: AccountService,
+    private basketService: BasketService
+  ) {
+    this.loadCurrentAddress();
+    this.loadCurrentDelivery();
+  }
   checkoutForm: FormGroup = this.fb.group({
     addressForm: this.fb.group({
       firstName: ['', Validators.required],
@@ -27,4 +35,22 @@ export class CheckoutComponent {
       nameOnCard: ['', Validators.required],
     }),
   });
+
+  loadCurrentAddress() {
+    this.accountService.getUserAddress().subscribe({
+      next: (address: Address) => {
+        this.checkoutForm?.get('addressForm')?.patchValue(address);
+      },
+    });
+  }
+
+  loadCurrentDelivery() {
+    var basket = this.basketService.getCurrentBasketValue();
+    if (basket?.deliveryMethodId) {
+      this.checkoutForm
+        .get('deliveryForm')
+        ?.get('deliveryMethod')
+        ?.patchValue(basket.deliveryMethodId.toString());
+    }
+  }
 }

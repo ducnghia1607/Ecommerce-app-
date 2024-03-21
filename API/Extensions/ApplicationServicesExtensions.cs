@@ -33,6 +33,7 @@ public static class ApplicationServicesExtensions
         services.AddScoped<IBasketRepository, BasketRepository>();
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IPaymentService, PaymentService>();
         services.AddScoped<IOrderService, OrderService>();
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

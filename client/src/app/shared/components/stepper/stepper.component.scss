@@ -2,5 +2,10 @@ button.nav-link{
     background: #e9ecef ;
     color:#333;
     border-radius: 0;
-    border:0
+    border:0;
+    &:disabled:not(.active){
+        background: #e9ecef ;
+        color:#333;
+    }
 }
+

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 
 import { Basket, BasketItem, BasketTotalCost } from '../shared/models/basket';
 import { Product } from '../shared/models/Product';
@@ -17,11 +17,22 @@ export class BasketService {
   private basketTotalCostSource = new BehaviorSubject<BasketTotalCost | null>(
     null
   );
-  shipping = 0;
 
   basketTotalCostSource$ = this.basketTotalCostSource.asObservable();
 
   constructor(private http: HttpClient) {}
+
+  createPaymentIntent() {
+    var basket = this.getCurrentBasketValue();
+    return this.http
+      .post<Basket>(this.baseUrl + 'payments/' + basket?.id, {})
+      .pipe(
+        map((basket) => {
+          this.basketSource.next(basket);
+          console.log(basket);
+        })
+      );
+  }
 
   getBasket(id: string) {
     return this.http
@@ -33,8 +44,12 @@ export class BasketService {
   }
 
   getShippingPrice(deliveryMethod: DeliveryMethod) {
-    this.shipping = deliveryMethod.price;
-    this.calculateTotalCost();
+    var basket = this.getCurrentBasketValue();
+    if (basket) {
+      basket.shippingPrice = deliveryMethod.price;
+      basket.deliveryMethodId = deliveryMethod.id;
+      this.setBasket(basket);
+    }
   }
 
   setBasket(basket: Basket) {
@@ -127,10 +142,14 @@ export class BasketService {
   private calculateTotalCost() {
     const basket = this.getCurrentBasketValue();
     if (!basket) return;
+    console.log(basket);
     const subtotal = basket.items.reduce((a, b) => a + b.price * b.quantity, 0);
-    const total = this.shipping + subtotal;
-    const shipping = this.shipping;
-    this.basketTotalCostSource.next({ shipping, subtotal, total });
+    const total = basket.shippingPrice + subtotal;
+    this.basketTotalCostSource.next({
+      shipping: basket.shippingPrice,
+      subtotal,
+      total,
+    });
   }
 
   private isProduct(item: Product | BasketItem): item is Product {

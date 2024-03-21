@@ -20,6 +20,7 @@ namespace Infrastructure.Services
         {
             // Get basket from repo
             var basket = await _basketRepo.GetBasketAsync(basketId);
+            if (basket == null) return null;
 
             var items = new List<OrderItem>();
             //get item for the product repo
@@ -38,16 +39,31 @@ namespace Infrastructure.Services
 
             var subtotal = items.Sum(item => item.Quantity * item.Price);
 
-            //create  order
-            var order = new Order(buyerEmail, items, shipToAddress, deliveryMethod, subtotal);
-            _uow.Repository<Order>().Add(order);
+            // check paymentIntent
+            var spec = new OrderByPaymentIntentSpecification(basket.PaymentIntentId);
+            var order = await _uow.Repository<Order>().GetEntityWithSpec(spec);
+            if (order != null)
+            {
+                order.DeliveryMethod = deliveryMethod;
+                order.ShipToAddress = shipToAddress;
+                order.PaymentIntentId = basket.PaymentIntentId;
+                order.Subtotal = subtotal;
+                _uow.Repository<Order>().Update(order);
+            }
+            else
+            {
+                //create  order
+                order = new Order(buyerEmail, items, shipToAddress, deliveryMethod, subtotal, basket.PaymentIntentId);
+                _uow.Repository<Order>().Add(order);
+            }
+
 
             // save to db
             var result = await _uow.Complete();
             if (result <= 0) return null;
 
             // delete basket;
-            await _basketRepo.DeteleBasketAsync(basketId);
+
 
             return order;
         }
