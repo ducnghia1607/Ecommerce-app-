@@ -31,3 +31,23 @@ export interface ItemOrdered {
   productName: string;
   pictureUrl: string;
 }
+
+export interface OrderToReturn {
+  id: number;
+  buyerEmail: string;
+  orderItems: OrderItemToReturn[];
+  deliveryMethod: string;
+  shippingPrice: number;
+  shipToAddress: Address;
+  orderDate: string;
+  orderStatus: string;
+  subtotal: number;
+}
+
+export interface OrderItemToReturn {
+  productId: number;
+  productName: string;
+  pictureUrl: string;
+  price: number;
+  quantity: number;
+}

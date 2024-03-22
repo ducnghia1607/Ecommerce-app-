@@ -1,4 +1,5 @@
 ﻿using API.Controllers;
+using API.Helpers;
 using AutoMapper;
 using Core;
 using Core.Entities;
@@ -25,6 +26,7 @@ public class ProductsController : BaseApiController
         _productBrandRepo = productBrandRepo;
     }
 
+    [Cached(300)]
     [HttpGet]
     public async Task<ActionResult<Pagination<ProductDto>>> GetProducts([FromQuery] ProductSpecParams productParams)
     {
@@ -35,6 +37,8 @@ public class ProductsController : BaseApiController
         var data = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDto>>(products);
         return Ok(new Pagination<ProductDto>(productParams.PageSize, productParams.PageIndex, totalItems, data));
     }
+
+    [Cached(300)]
 
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -47,6 +51,7 @@ public class ProductsController : BaseApiController
         return Ok(_mapper.Map<Product, ProductDto>(product));
     }
 
+    [Cached(300)]
     [HttpGet("brands")]
     public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
     {
@@ -54,6 +59,7 @@ public class ProductsController : BaseApiController
     }
 
 
+    [Cached(300)]
     [HttpGet("types")]
     public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductTypes()
     {

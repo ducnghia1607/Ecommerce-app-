@@ -10,7 +10,11 @@
           (change)="onSortSelected($event)"
           [value]="productParams.sort"
         >
-          <option *ngFor="let sort of sortOptions" value="{{ sort.value }}">
+          <option
+            *ngFor="let sort of sortOptions"
+            value="{{ sort.value }}"
+            [selected]="productParams.sort === sort.value"
+          >
             {{ sort.name }}
           </option>
         </select>
@@ -87,6 +91,7 @@
         [totalItems]="totalItems"
         [pageSize]="productParams.pageSize"
         (pagerChanged)="onPageChanged($event)"
+        [pageNumber]="productParams.pageIndex"
       ></app-pager>
     </div>
   </div>

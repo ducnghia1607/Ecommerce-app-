@@ -35,6 +35,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./account/account.module').then((m) => m.AccountModule),
   },
+  {
+    path: 'order',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./order/order.module').then((m) => m.OrderModule),
+    data: { breadcrumb: 'Orders' },
+  },
   { path: 'test-error', component: TestErrorComponent },
   { path: 'not-found', component: NotFoundComponent },
   { path: 'server-error', component: ServerErrorComponent },

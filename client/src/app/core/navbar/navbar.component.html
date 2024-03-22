@@ -6,6 +6,7 @@
     alt="logo"
     style="max-height: 70px"
     class="logo"
+    routerLink="/shop"
   />
   <nav class="d-inline-flex justify-content-center mt-2 text-uppercase fs-4">
     <a
@@ -16,9 +17,10 @@
       >Home</a
     >
     <a class="me-3 py-2" routerLink="/shop" routerLinkActive="active">Shop</a>
-    <a class="me-3 py-2" routerLink="/test-error" routerLinkActive="active"
+    <!-- <a class="me-3 py-2" routerLink="/test-error" routerLinkActive="active"
       >Errors</a
-    >
+    > -->
+    <a class="me-3 py-2" routerLink="/shop">About</a>
   </nav>
   <div class="d-flex flex-row align-items-center">
     <a class="position-relative me-5" routerLink="/basket">
@@ -60,7 +62,7 @@
             >
           </li>
           <li>
-            <a href="" class="dropdown-item" routerLink="/orders">
+            <a href="" class="dropdown-item" routerLink="/order">
               <i class="fa fa-history me-2"></i> View Orders</a
             >
           </li>

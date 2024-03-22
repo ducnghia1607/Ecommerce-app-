@@ -21,7 +21,6 @@ namespace API.Dtos
         public string OrderStatus { get; set; }
 
         public decimal Subtotal { get; set; }
-        public decimal Total { get; set; }
 
     }
 }
