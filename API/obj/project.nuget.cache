@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Qv0xy7xrWSxuyjbDhpCxqmjhq9ORLwGverDy6oyDssbGV63ZaVkLZfvGG/pXsP7aPM0favebNIJbU6Yffqvl5w==",
+  "dgSpecHash": "8kgrQQflbxvk7Cer+aLHML7NQGMU84UzsBmJUyUSL9oecMT6PKYHe3vE6deWAie9vpoLE/yRaBg3txyOZSRjxA==",
   "success": true,
   "projectFilePath": "D:\\netcore_angular\\ecommerce_app\\API\\API.csproj",
   "expectedPackageFiles": [
@@ -70,6 +70,8 @@
     "C:\\Users\\ACER\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\ACER\\.nuget\\packages\\npgsql\\8.0.2\\npgsql.8.0.2.nupkg.sha512",
+    "C:\\Users\\ACER\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\8.0.2\\npgsql.entityframeworkcore.postgresql.8.0.2.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.8\\pipelines.sockets.unofficial.2.2.8.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.6\\sqlitepclraw.bundle_e_sqlite3.2.1.6.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\sqlitepclraw.core\\2.1.6\\sqlitepclraw.core.2.1.6.nupkg.sha512",
